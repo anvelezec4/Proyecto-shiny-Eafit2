@@ -1,0 +1,18 @@
+{
+    "contents" : "\n\nrequire(tseries)\nrequire(forecast)\n\ndataT <- read.csv(\"CS (2).csv\", header=FALSE, sep=\",\")\ndataT <- t(dataT)\n# plot(dataT,type=\"l\")\n\n acf(dataT)\n pacf(dataT)\n\ndataTlog <- log(dataT + 1)\n\n# plot(dataTlog,type=\"o\",xlab=\"Tiempo\",ylab=\"\")\n\n acf(dataTlog)\n pacf(dataTlog)\n\nmodelo <- Arima(dataTlog,c(7,0,5))\n\n#-------------------------------------------\nplot(dataTlog,type=\"l\",xlab=\"Tiempo\",ylab=\"\",xlim = c(0,150),ylim = c(0,10))\nlines(fitted(modelo),col=\"red\")\n\nprediccion <- predict(modelo,10)\nlines(prediccion$pred,type=\"o\")\nlines(prediccion$pred-prediccion$se,col=\"blue\",type=\"o\")\nlines(prediccion$pred+prediccion$se,col=\"blue\",type=\"o\")\n\n#-------------------------------------------\nlibrary(neuralnet)\nn <- names(train_)\nf <- as.formula(paste(\"medv ~\", paste(n[!n %in% \"medv\"], collapse = \" + \")))\nnn <- neuralnet(f,data=train_,hidden=c(5,3),linear.output=T)\n\n\ndata(infert, package=\"datasets\")\nprint(net.infert <- neuralnet(case~parity+induced+spontaneous,\n                              infert, err.fct=\"ce\", linear.output=FALSE))\nconfidence.interval(net.infert)\n\n\ndata(infert, package=\"datasets\")\nprint(net.infert <- neuralnet(case~parity+induced+spontaneous, infert,\n                              err.fct=\"ce\", linear.output=FALSE, likelihood=TRUE))\ngwplot(net.infert, selected.covariate=\"parity\")\ngwplot(net.infert, selected.covariate=\"induced\")\ngwplot(net.infert, selected.covariate=\"spontaneous\")\n\n\n\n\n\nrequire(quantmod) \nrequire(nnet)\nrequire(caret)\nT = seq(0,20,length=200)\nY = 1 + 3*cos(4*T+2) +.2*T^2 + rnorm(200)\ndat <- data.frame( y, x1=Lag(y,1), x2=Lag(y,2))\nnames(dat) <- c('y','x1','x2')\n#Fit model\nmodel <- train(y ~ x1+x2 , \n               dat, \n               method='nnet', \n               linout=TRUE, \n               trace = FALSE)\nps <- predict(model, dat)\n\n#Examine results\n\nplot(T,Y,type=\"l\",col = 2)\nlines(T[-c(1:2)],ps, col=3)\nlegend(5, 70, c(\"y\", \"pred\"), cex=1.5, fill=2:3)\n\n\n\n#---------\nx <- 1:length(dataT)\ndataT <- data.frame(t = dataT,x)\nmodelo <- train(t ~ x ,\n                dataT,\n                method='nnet', \n                linout=TRUE, \n                trace = FALSE)\nps <- predict(modelo, dat)\n\n####################\nhw <- HoltWinters(ldeaths)\np <- predict(hw, n.ahead = 36, prediction.interval = TRUE)\nall <- cbind(ldeaths, p)\n\ndygraph(all, \"Deaths from Lung Disease (UK)\") %>%\n   dySeries(\"ldeaths\", label = \"Actual\") %>%\n   dySeries(c(\"p.lwr\", \"p.fit\", \"p.upr\"), label = \"Predicted\")\n\n",
+    "created" : 1463665836565.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2401523931",
+    "id" : "1F6D31A2",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

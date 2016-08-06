@@ -1,0 +1,10 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+        ],
+        "path" : "C:/Users/aveleze/Desktop/Papadopulus Pispis/Proyecto-shiny-Eafit/Shiny-Eafit",
+        "query" : "impT",
+        "regex" : false
+    }
+}

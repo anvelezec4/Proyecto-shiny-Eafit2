@@ -1,0 +1,18 @@
+{
+    "contents" : "\nrequire(tseries)\nrequire(forecast)\n\ndataT <- read.csv(\"CS (2).csv\", header=FALSE, sep=\",\")\ndataT <- t(dataT)\ndataTlog <- log(dataT + 1)\nmodelo <- Arima(dataTlog,c(7,0,7))\n\n#-------------------------------------------\nplot(dataT,type=\"l\",xlab=\"Time\",ylab=\"\",xlim = c(0,150),ylim=c(0,16000))\nlines(exp(fitted(modelo)),col=\"red\")\n\nprediccion <- predict(modelo,10)\nlines(exp(prediccion$pred),type=\"o\")\nlines(exp(prediccion$pred-prediccion$se),col=\"blue\",type=\"o\")\nlines(exp(prediccion$pred+prediccion$se),col=\"blue\",type=\"o\")\n",
+    "created" : 1463668575641.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3831525566",
+    "id" : "279FA46E",
+    "lastKnownWriteTime" : 1463669834,
+    "path" : "C:/Users/aveleze/Desktop/Papadopulus Pispis/Proyecto-shiny-Eafit/Shiny-Eafit/Arma.R",
+    "project_path" : "Arma.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
